@@ -11,9 +11,10 @@ expect_run() {
     echo >&2 "PASS: $im"
   else
     echo >&2 "FAIL: $im actual $actual != expected $expected"
-    exit 1
   fi
 }
+
+export DOCKER_BUILDKIT=1
 
 docker build -t docker-build-repro-v1 --target v1 .
 expect_run docker-build-repro-v1 v1
